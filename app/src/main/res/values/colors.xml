@@ -3,4 +3,12 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="secondary_blue">#539AC6</color>
+    <color name="dark_blue">#05293E</color>
+    <color name="status_blue">#004E7B</color>
+    <color name="primary_blue">#377AA4</color>
+    <color name="orange">#FFAD57</color>
+    <color name="navtext_blue">#44779E</color>
+    <color name="grey">#99000000</color>
+    <color name="error_red">#CE3760</color>
 </resources>

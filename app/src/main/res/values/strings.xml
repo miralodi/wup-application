@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Wup Application</string>
+    <string name="menu_title_cards">Cards</string>
+    <string name="menu_title_transactions">Transactions</string>
+    <string name="menu_title_statements">Statements</string>
+    <string name="menu_title_more">More</string>
 </resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_title_cards"
+        android:enabled="true"
+        android:icon="@drawable/nav_cards"
+        android:title="@string/menu_title_cards"/>
+
+    <item
+        android:id="@+id/menu_title_transactions"
+        android:enabled="false"
+        android:icon="@drawable/nav_trans"
+        android:title="@string/menu_title_transactions"/>
+
+    <item
+        android:id="@+id/menu_title_statements"
+        android:enabled="false"
+        android:icon="@drawable/nav_state"
+        
+        android:title="@string/menu_title_statements"/>
+
+    <item
+        android:id="@+id/menu_title_more"
+        android:enabled="false"
+        android:icon="@drawable/nav_more"
+        android:title="@string/menu_title_more"/>
+
+</menu>
