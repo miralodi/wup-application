@@ -22,7 +22,7 @@ public class DateFormatter {
         } catch (ParseException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println(result);
+
         return result;
     }
 }
