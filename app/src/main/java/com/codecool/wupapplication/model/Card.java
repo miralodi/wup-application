@@ -1,6 +1,9 @@
 package com.codecool.wupapplication.model;
 
-public class Card {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Card implements Parcelable {
 
     private int cardId;
 
@@ -59,6 +62,34 @@ public class Card {
         this.accountDetails = accountDetails;
         this.cardImage = cardImage;
     }
+
+    protected Card(Parcel in) {
+        cardId = in.readInt();
+        cardNumber = in.readString();
+        cardHolderName = in.readString();
+        currency = in.readString();
+        availableBalance = in.readInt();
+        currentBalance = in.readInt();
+        minPayment = in.readInt();
+        dueDate = in.readString();
+        reservations = in.readInt();
+        balanceCarriedOverFromLastStatement = in.readInt();
+        spendingsSinceLastStatement = in.readInt();
+        yourLastRepayment = in.readString();
+        cardImage = in.readInt();
+    }
+
+    public static final Creator<Card> CREATOR = new Creator<Card>() {
+        @Override
+        public Card createFromParcel(Parcel in) {
+            return new Card(in);
+        }
+
+        @Override
+        public Card[] newArray(int size) {
+            return new Card[size];
+        }
+    };
 
     public int getCardId() {
         return cardId;
@@ -170,5 +201,27 @@ public class Card {
 
     public void setCardImage(int cardImage) {
         this.cardImage = cardImage;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(cardId);
+        dest.writeString(cardNumber);
+        dest.writeString(cardHolderName);
+        dest.writeString(currency);
+        dest.writeInt(availableBalance);
+        dest.writeInt(currentBalance);
+        dest.writeInt(minPayment);
+        dest.writeString(dueDate);
+        dest.writeInt(reservations);
+        dest.writeInt(balanceCarriedOverFromLastStatement);
+        dest.writeInt(spendingsSinceLastStatement);
+        dest.writeString(yourLastRepayment);
+        dest.writeInt(cardImage);
     }
 }

@@ -2,6 +2,7 @@ package com.codecool.wupapplication.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,14 +11,18 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.codecool.wupapplication.R;
+import com.codecool.wupapplication.model.Card;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements CardContract.View {
 
     private BottomNavigationView navView;
     private CardContract.Presenter mPresenter;
     private ProgressBar progressBar;
+    private View overlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
         setContentView(R.layout.activity_main);
 
         progressBar = findViewById(R.id.progress_circular);
+        overlay = findViewById(R.id.overlay);
 
         mPresenter = new CardPresenter(this);
         mPresenter.requestCards();
@@ -54,13 +60,22 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
     }
 
     @Override
+    public void showCardFragments(List<Card> cards) {
+        CardFragmentAdapter cardFragmentAdapter = new CardFragmentAdapter(getSupportFragmentManager(), cards);
+        ViewPager viewPager = findViewById(R.id.card_pager);
+        viewPager.setAdapter(cardFragmentAdapter);
+    }
+
+    @Override
     public void showProgress() {
+        overlay.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
         progressBar.setVisibility(View.GONE);
+        overlay.setVisibility(View.GONE);
     }
 
     @Override

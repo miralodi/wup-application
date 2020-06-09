@@ -28,8 +28,6 @@ public class CardPresenter implements CardContract.Presenter {
 
     @Override
     public void requestCards() {
-        mView.showProgress();
-
         mApiService.requestCards()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -55,7 +53,7 @@ public class CardPresenter implements CardContract.Presenter {
                     @Override
                     public void onComplete() {
                         mView.hideProgress();
-                        System.out.println("SUCCESS");
+                        mView.showCardFragments(cardList);
                     }
                 });
     }
