@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.codecool.wupapplication.R;
@@ -15,11 +17,14 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
 
     private BottomNavigationView navView;
     private CardContract.Presenter mPresenter;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        progressBar = findViewById(R.id.progress_circular);
 
         mPresenter = new CardPresenter(this);
         mPresenter.requestCards();
@@ -50,12 +55,12 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
 
     @Override
     public void showProgress() {
-        // ToDO
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
-        // ToDo
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
