@@ -1,7 +1,5 @@
 package com.codecool.wupapplication.model;
 
-import java.util.Date;
-
 public class Card {
 
     private int cardId;
@@ -18,7 +16,7 @@ public class Card {
 
     private int minPayment;
 
-    private Date dueDate;
+    private String dueDate;
 
     private int reservations;
 
@@ -26,7 +24,7 @@ public class Card {
 
     private int spendingsSinceLastStatement;
 
-    private Date yourLastRepayment;
+    private String yourLastRepayment;
 
     private AccountDetails accountDetails;
 
@@ -39,11 +37,11 @@ public class Card {
                 int availableBalance,
                 int currentBalance,
                 int minPayment,
-                Date dueDate,
+                String dueDate,
                 int reservations,
                 int balanceCarriedOverFromLastStatement,
                 int spendingsSinceLastStatement,
-                Date yourLastRepayment,
+                String yourLastRepayment,
                 AccountDetails accountDetails,
                 int cardImage) {
         this.cardId = cardId;
@@ -118,11 +116,11 @@ public class Card {
         this.minPayment = minPayment;
     }
 
-    public Date getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
 
@@ -150,11 +148,11 @@ public class Card {
         this.spendingsSinceLastStatement = spendingsSinceLastStatement;
     }
 
-    public Date getYourLastRepayment() {
+    public String getYourLastRepayment() {
         return yourLastRepayment;
     }
 
-    public void setYourLastRepayment(Date yourLastRepayment) {
+    public void setYourLastRepayment(String yourLastRepayment) {
         this.yourLastRepayment = yourLastRepayment;
     }
 
