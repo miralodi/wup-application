@@ -11,4 +11,5 @@
     <color name="navtext_blue">#44779E</color>
     <color name="grey">#99000000</color>
     <color name="error_red">#CE3760</color>
+    <color name="overlay">#d7d7d7</color>
 </resources>
