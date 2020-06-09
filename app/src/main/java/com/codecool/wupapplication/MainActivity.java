@@ -8,10 +8,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.codecool.wupapplication.model.Card;
+import com.codecool.wupapplication.model.CardAdapter;
 import com.codecool.wupapplication.model.ResponseCards;
 import com.codecool.wupapplication.network.BaseApiService;
 import com.codecool.wupapplication.network.UtilsApi;
-import com.codecool.wupapplication.util.DateFormatter;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -74,22 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onNext(List<ResponseCards> responseCards) {
                     for (ResponseCards resCard : responseCards) {
-                        cardList.add(new Card(
-                                resCard.getCardId(),
-                                resCard.getCardNumber(),
-                                resCard.getCardHolderName(),
-                                resCard.getCurrency(),
-                                resCard.getAvailableBalance(),
-                                resCard.getCurrentBalance(),
-                                resCard.getMinPayment(),
-                                DateFormatter.formatDateString(resCard.getDueDate()),
-                                resCard.getReservations(),
-                                resCard.getBalanceCarriedOverFromLastStatement(),
-                                resCard.getSpendingsSinceLastStatement(),
-                                DateFormatter.formatDateString(resCard.getYourLastRepayment()),
-                                resCard.getAccountDetails(),
-                                resCard.getCardImage()
-                        ));
+                        cardList.add(CardAdapter.convertResponseCardToCard(resCard));
                     }
                 }
 
