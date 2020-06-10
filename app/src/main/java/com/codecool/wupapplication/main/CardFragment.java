@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,8 +24,11 @@ public class CardFragment extends Fragment {
     private TextView mDueDate;
     private TextView mDetailsButton;
     private ImageView mCardImage;
+    private ImageButton mArrowLeft;
+    private ImageButton mArrowRight;
 
     private Card currentCard;
+    private int position;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +40,7 @@ public class CardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         currentCard = getArguments().getParcelable("currentCard");
+        position = getArguments().getInt("position");
         initializeViews(view);
     }
 
@@ -46,6 +51,8 @@ public class CardFragment extends Fragment {
         mDueDate = view.findViewById(R.id.due_date_value);
         mDetailsButton = view.findViewById(R.id.details_button);
         mCardImage = view.findViewById(R.id.card_image);
+        mArrowLeft = view.findViewById(R.id.arrow_left);
+        mArrowRight = view.findViewById(R.id.arrow_right);
 
         mAvailableBalance.setText(String.valueOf(currentCard.getAvailableBalance()));
         mCurrentBalance.setText(String.valueOf(currentCard.getCurrentBalance()));
@@ -58,5 +65,19 @@ public class CardFragment extends Fragment {
             case 3: mCardImage.setImageResource(R.drawable.cccard3); break;
             default: break;
         }
+
+        mArrowLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).setCurrentItem(--position, true);
+            }
+        });
+
+        mArrowRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).setCurrentItem(++position, true);
+            }
+        });
     }
 }

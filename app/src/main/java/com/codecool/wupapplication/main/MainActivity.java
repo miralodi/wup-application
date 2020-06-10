@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
     private CardContract.Presenter mPresenter;
     private ProgressBar progressBar;
     private View overlay;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
     @Override
     public void showCardFragments(List<Card> cards) {
         CardFragmentAdapter cardFragmentAdapter = new CardFragmentAdapter(getSupportFragmentManager(), cards);
-        ViewPager viewPager = findViewById(R.id.card_pager);
+        viewPager = findViewById(R.id.card_pager);
         viewPager.setAdapter(cardFragmentAdapter);
     }
 
@@ -91,5 +92,9 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
     protected void onDestroy() {
         mPresenter.onDetach();
         super.onDestroy();
+    }
+
+    public void setCurrentItem(int item, boolean smoothScroll) {
+        viewPager.setCurrentItem(item, smoothScroll);
     }
 }
