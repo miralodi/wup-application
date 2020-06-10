@@ -1,6 +1,7 @@
 package com.codecool.wupapplication.main;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -28,6 +29,9 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.custom_action_bar);
 
         progressBar = findViewById(R.id.progress_circular);
         overlay = findViewById(R.id.overlay);
