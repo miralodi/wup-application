@@ -7,4 +7,46 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="main_card_arrow">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:tint">@color/secondary_blue</item>
+        <item name="android:src">@drawable/ic_arrowleft</item>
+    </style>
+
+    <style name="main_card_detail_container">
+        <item name="android:paddingLeft">@dimen/container_padding_horizontal</item>
+        <item name="android:paddingStart">@dimen/container_padding_horizontal</item>
+        <item name="android:paddingRight">@dimen/container_padding_horizontal</item>
+        <item name="android:paddingEnd">@dimen/container_padding_horizontal</item>
+    </style>
+
+    <style name="detail_label">
+        <item name="android:textColor">@color/status_blue</item>
+        <item name="android:textSize">@dimen/detail_text_size</item>
+        <item name="fontFamily">Roboto-Regular</item>
+    </style>
+
+    <style name="currency">
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:textSize">@dimen/detail_text_size</item>
+        <item name="fontFamily">Roboto-Regular</item>
+        <item name="android:gravity">right|center_vertical</item>
+    </style>
+
+    <style name="detail_value">
+        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:textSize">@dimen/detail_text_size</item>
+        <item name="fontFamily">Roboto-Medium</item>
+        <item name="android:gravity">right|center_vertical</item>
+    </style>
+
+    <style name="button_details">
+        <item name="android:layout_marginTop">31dp</item>
+        <item name="android:textColor">@color/secondary_blue</item>
+        <item name="android:textSize">14.17sp</item>
+        <item name="fontFamily">Roboto-Medium</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
 </resources>
