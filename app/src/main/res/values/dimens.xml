@@ -31,4 +31,7 @@
     <dimen name="available_label_text_size">14sp</dimen>
     <dimen name="available_value_height">37dp</dimen>
     <dimen name="available_value_text_size">20sp</dimen>
+    <dimen name="divider_line_height">1dp</dimen>
+    <dimen name="details_button_width">160dp</dimen>
+    <dimen name="details_button_height">36dp</dimen>
 </resources>
