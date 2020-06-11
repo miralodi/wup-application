@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codecool.wupapplication.R;
+import com.codecool.wupapplication.detail.DetailActivity;
 import com.codecool.wupapplication.model.Card;
 import com.codecool.wupapplication.util.ChartCalculatorWithAnimation;
 import com.codecool.wupapplication.util.CurrencyFormatter;
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
         setContentView(R.layout.activity_main);
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.custom_action_bar);
+        getSupportActionBar().setCustomView(R.layout.main_action_bar);
 
         progressBar = findViewById(R.id.progress_circular);
         overlay = findViewById(R.id.overlay);
@@ -109,6 +111,14 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
             @Override
             public void onPageScrollStateChanged(int state) {
 
+            }
+        });
+
+        mDetailsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -7,6 +7,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="DetailTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="actionBarStyle">@style/DetailsActionBar</item>
+    </style>
+
+    <style name="DetailsActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
+        <item name="titleTextStyle">@style/DetailsActionBarTextStyle</item>
+    </style>
+
+    <style name="DetailsActionBarTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/status_blue</item>
+    </style>
+
     <style name="main_card_arrow">
         <item name="android:background">@android:color/transparent</item>
         <item name="android:tint">@color/secondary_blue</item>
@@ -48,6 +61,4 @@
         <item name="android:gravity">center_vertical|center_horizontal</item>
         <item name="android:textAllCaps">true</item>
     </style>
-
-    <dimen name="button_text_size">14sp</dimen>
 </resources>

@@ -9,5 +9,6 @@
     <string name="label_min_payment">Min. payment</string>
     <string name="label_due_date">Due date</string>
     <string name="button_details">Details</string>
-    <string name="action_bar_title">Premium Card</string>
+    <string name="action_bar_main_title">Premium Card</string>
+    <string name="action_bar_details_title">Details</string>
 </resources>
