@@ -9,12 +9,14 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codecool.wupapplication.R;
 import com.codecool.wupapplication.model.Card;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
 
@@ -25,6 +27,13 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
     private ProgressBar progressBar;
     private View overlay;
     private ViewPager viewPager;
+    private TextView mAvailableBalance;
+    private TextView mCurrentBalance;
+    private TextView mMinPayment;
+    private TextView mDueDate;
+    private TextView mCurrentBalanceCurrency;
+    private TextView mPaymentCurrency;
+    private TextView mDetailsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +45,13 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
 
         progressBar = findViewById(R.id.progress_circular);
         overlay = findViewById(R.id.overlay);
+        mAvailableBalance = findViewById(R.id.main_available_value);
+        mCurrentBalance = findViewById(R.id.current_balance_value);
+        mMinPayment = findViewById(R.id.min_payment_value);
+        mDueDate = findViewById(R.id.due_date_value);
+        mCurrentBalanceCurrency = findViewById(R.id.current_balance_currency);
+        mPaymentCurrency = findViewById(R.id.min_payment_currency);
+        mDetailsButton = findViewById(R.id.details_button);
 
         mPresenter = new CardPresenter(this);
         mPresenter.requestCards();
@@ -65,10 +81,13 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
     }
 
     @Override
-    public void showCardFragments(List<Card> cards) {
+    public void showCardFragments(final List<Card> cards) {
         CardFragmentAdapter cardFragmentAdapter = new CardFragmentAdapter(getSupportFragmentManager(), cards);
         viewPager = findViewById(R.id.card_pager);
         viewPager.setAdapter(cardFragmentAdapter);
+        TabLayout tabLayout = findViewById(R.id.tabDots);
+        tabLayout.setupWithViewPager(viewPager, true);
+        fillData(0, cards);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -77,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
 
             @Override
             public void onPageSelected(int position) {
-                //  ToDo
+                fillData(position, cards);
             }
 
             @Override
@@ -85,6 +104,15 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
 
             }
         });
+    }
+
+    private void fillData(int position, List<Card> cards) {
+        mAvailableBalance.setText(String.valueOf(cards.get(position).getAvailableBalance()));
+        mCurrentBalance.setText(String.valueOf(cards.get(position).getCurrentBalance()));
+        mMinPayment.setText(String.valueOf(cards.get(position).getMinPayment()));
+        mDueDate.setText(cards.get(position).getDueDate());
+        mCurrentBalanceCurrency.setText(cards.get(position).getCurrency());
+        mPaymentCurrency.setText(cards.get(position).getCurrency());
     }
 
     @Override

@@ -11,29 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.codecool.wupapplication.R;
 import com.codecool.wupapplication.model.Card;
-import com.codecool.wupapplication.util.PositionIndicatorHelper;
-import com.google.android.material.tabs.TabLayout;
 
 public class CardFragment extends Fragment {
 
-    private TextView mAvailableBalance;
-    private TextView mCurrentBalance;
-    private TextView mMinPayment;
-    private TextView mDueDate;
-    private TextView mDetailsButton;
-    private ImageView mCardImage;
-    private ImageButton mArrowLeft;
-    private ImageButton mArrowRight;
-    private LinearLayout dotContainer;
-
     private Card currentCard;
     private int position;
-    private int allCardsLength;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,25 +31,13 @@ public class CardFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         currentCard = getArguments().getParcelable("currentCard");
         position = getArguments().getInt("position");
-        allCardsLength = getArguments().getInt("cardsSize");
         initializeViews(view);
     }
 
     private void initializeViews(View view) {
-        mAvailableBalance = view.findViewById(R.id.main_available_value);
-        mCurrentBalance = view.findViewById(R.id.current_balance_value);
-        mMinPayment = view.findViewById(R.id.min_payment_value);
-        mDueDate = view.findViewById(R.id.due_date_value);
-        mDetailsButton = view.findViewById(R.id.details_button);
-        mCardImage = view.findViewById(R.id.card_image);
-        mArrowLeft = view.findViewById(R.id.arrow_left);
-        mArrowRight = view.findViewById(R.id.arrow_right);
-        dotContainer = view.findViewById(R.id.dot_container);
-
-        mAvailableBalance.setText(String.valueOf(currentCard.getAvailableBalance()));
-        mCurrentBalance.setText(String.valueOf(currentCard.getCurrentBalance()));
-        mMinPayment.setText(String.valueOf(currentCard.getMinPayment()));
-        mDueDate.setText(currentCard.getDueDate());
+        ImageView mCardImage = view.findViewById(R.id.card_image);
+        ImageButton mArrowLeft = view.findViewById(R.id.arrow_left);
+        ImageButton mArrowRight = view.findViewById(R.id.arrow_right);
 
         switch (currentCard.getCardImage()) {
             case 1: mCardImage.setImageResource(R.drawable.cccard); break;
@@ -72,8 +45,6 @@ public class CardFragment extends Fragment {
             case 3: mCardImage.setImageResource(R.drawable.cccard3); break;
             default: break;
         }
-
-        PositionIndicatorHelper.setDotIndicators(dotContainer, position, allCardsLength, getContext());
 
         mArrowLeft.setOnClickListener(new View.OnClickListener() {
             @Override

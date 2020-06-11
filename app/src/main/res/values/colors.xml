@@ -12,4 +12,5 @@
     <color name="grey">#99000000</color>
     <color name="error_red">#CE3760</color>
     <color name="overlay">#d7d7d7</color>
+    <color name="tab_default">#48539AC6</color>
 </resources>
