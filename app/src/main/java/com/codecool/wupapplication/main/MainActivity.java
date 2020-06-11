@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.codecool.wupapplication.R;
 import com.codecool.wupapplication.model.Card;
+import com.codecool.wupapplication.util.CurrencyFormatter;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -107,12 +108,13 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
     }
 
     private void fillData(int position, List<Card> cards) {
-        mAvailableBalance.setText(String.valueOf(cards.get(position).getAvailableBalance()));
-        mCurrentBalance.setText(String.valueOf(cards.get(position).getCurrentBalance()));
-        mMinPayment.setText(String.valueOf(cards.get(position).getMinPayment()));
+        String currency = cards.get(position).getCurrency();
+        mAvailableBalance.setText(CurrencyFormatter.formatIntToCurrency(cards.get(position).getAvailableBalance()));
+        mCurrentBalance.setText(CurrencyFormatter.formatIntToCurrency(cards.get(position).getCurrentBalance()));
+        mMinPayment.setText(CurrencyFormatter.formatIntToCurrency(cards.get(position).getMinPayment()));
         mDueDate.setText(cards.get(position).getDueDate());
-        mCurrentBalanceCurrency.setText(cards.get(position).getCurrency());
-        mPaymentCurrency.setText(cards.get(position).getCurrency());
+        mCurrentBalanceCurrency.setText(currency);
+        mPaymentCurrency.setText(currency);
     }
 
     @Override
