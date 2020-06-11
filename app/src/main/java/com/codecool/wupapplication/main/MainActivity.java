@@ -8,12 +8,14 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codecool.wupapplication.R;
 import com.codecool.wupapplication.model.Card;
+import com.codecool.wupapplication.util.ChartCalculatorWithAnimation;
 import com.codecool.wupapplication.util.CurrencyFormatter;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
     private TextView mDueDate;
     private TextView mCurrentBalanceCurrency;
     private TextView mPaymentCurrency;
+    private FrameLayout mChartContainer;
+    private View mChartAvailable;
     private TextView mDetailsButton;
 
     @Override
@@ -52,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
         mDueDate = findViewById(R.id.due_date_value);
         mCurrentBalanceCurrency = findViewById(R.id.current_balance_currency);
         mPaymentCurrency = findViewById(R.id.min_payment_currency);
+        mChartContainer = findViewById(R.id.chart_container);
+        mChartAvailable = findViewById(R.id.available_chart_blue);
         mDetailsButton = findViewById(R.id.details_button);
 
         mPresenter = new CardPresenter(this);
@@ -109,12 +115,18 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
 
     private void fillData(int position, List<Card> cards) {
         String currency = cards.get(position).getCurrency();
-        mAvailableBalance.setText(CurrencyFormatter.formatIntToCurrency(cards.get(position).getAvailableBalance()));
-        mCurrentBalance.setText(CurrencyFormatter.formatIntToCurrency(cards.get(position).getCurrentBalance()));
+        int availableBalance = cards.get(position).getAvailableBalance();
+        int currentBalance = cards.get(position).getCurrentBalance();
+
+        mAvailableBalance.setText(CurrencyFormatter.formatIntToCurrency(availableBalance));
+        mCurrentBalance.setText(CurrencyFormatter.formatIntToCurrency(currentBalance));
         mMinPayment.setText(CurrencyFormatter.formatIntToCurrency(cards.get(position).getMinPayment()));
         mDueDate.setText(cards.get(position).getDueDate());
         mCurrentBalanceCurrency.setText(currency);
         mPaymentCurrency.setText(currency);
+
+        int chartLength = mChartContainer.getWidth();
+        ChartCalculatorWithAnimation.calculateChart(chartLength, availableBalance, currentBalance, mChartAvailable);
     }
 
     @Override
