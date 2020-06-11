@@ -11,10 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.codecool.wupapplication.R;
 import com.codecool.wupapplication.model.Card;
+import com.codecool.wupapplication.util.PositionIndicatorHelper;
+import com.google.android.material.tabs.TabLayout;
 
 public class CardFragment extends Fragment {
 
@@ -26,9 +29,11 @@ public class CardFragment extends Fragment {
     private ImageView mCardImage;
     private ImageButton mArrowLeft;
     private ImageButton mArrowRight;
+    private LinearLayout dotContainer;
 
     private Card currentCard;
     private int position;
+    private int allCardsLength;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +46,7 @@ public class CardFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         currentCard = getArguments().getParcelable("currentCard");
         position = getArguments().getInt("position");
+        allCardsLength = getArguments().getInt("cardsSize");
         initializeViews(view);
     }
 
@@ -53,6 +59,7 @@ public class CardFragment extends Fragment {
         mCardImage = view.findViewById(R.id.card_image);
         mArrowLeft = view.findViewById(R.id.arrow_left);
         mArrowRight = view.findViewById(R.id.arrow_right);
+        dotContainer = view.findViewById(R.id.dot_container);
 
         mAvailableBalance.setText(String.valueOf(currentCard.getAvailableBalance()));
         mCurrentBalance.setText(String.valueOf(currentCard.getCurrentBalance()));
@@ -65,6 +72,8 @@ public class CardFragment extends Fragment {
             case 3: mCardImage.setImageResource(R.drawable.cccard3); break;
             default: break;
         }
+
+        PositionIndicatorHelper.setDotIndicators(dotContainer, position, allCardsLength, getContext());
 
         mArrowLeft.setOnClickListener(new View.OnClickListener() {
             @Override
