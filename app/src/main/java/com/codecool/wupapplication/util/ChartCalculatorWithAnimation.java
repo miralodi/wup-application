@@ -6,20 +6,23 @@ import android.view.View;
 
 public class ChartCalculatorWithAnimation {
 
+    private static final int ANIMATION_DURATION = 1000;
+    private static final int PERCENTAGE = 100;
+
     public static void calculateChart(int chartLength, int availableBalance, int currentBalance, View mChartAvailable) {
         double maxValue = availableBalance + currentBalance;
-        double percentage = availableBalance * 100 / maxValue;
+        double percentage = availableBalance * PERCENTAGE / maxValue;
 
-        setWidthAnimation(mChartAvailable, mChartAvailable.getLayoutParams().width, (int) Math.round(chartLength * (percentage / 100)));
+        setWidthAnimation(mChartAvailable, mChartAvailable.getLayoutParams().width, (int) Math.round(chartLength * (percentage / PERCENTAGE)));
 
         mChartAvailable.setVisibility(View.VISIBLE);
         mChartAvailable.requestLayout();
     }
 
-    private static void setWidthAnimation(final View view, int currentHeight, int newHeight) {
+    private static void setWidthAnimation(final View view, int currentWidth, int newWidth) {
         ValueAnimator slideAnimator = ValueAnimator
-                .ofInt(currentHeight, newHeight)
-                .setDuration(1000);
+                .ofInt(currentWidth, newWidth)
+                .setDuration(ANIMATION_DURATION);
 
         slideAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                             @Override
