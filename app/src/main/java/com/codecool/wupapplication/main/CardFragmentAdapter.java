@@ -27,6 +27,8 @@ public class CardFragmentAdapter extends FragmentPagerAdapter {
 
         Bundle bundle = new Bundle();
         bundle.putParcelable("currentCard", cards.get(position));
+        bundle.putInt("position", position);
+        bundle.putInt("cardsSize", cards.size());
 
         cardFragment.setArguments(bundle);
         return cardFragment;

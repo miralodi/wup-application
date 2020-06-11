@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorPrimary">#fff</color>
+    <color name="colorPrimaryDark">#004E7B</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="secondary_blue">#539AC6</color>
     <color name="dark_blue">#05293E</color>
@@ -12,4 +12,5 @@
     <color name="grey">#99000000</color>
     <color name="error_red">#CE3760</color>
     <color name="overlay">#d7d7d7</color>
+    <color name="tab_default">#48539AC6</color>
 </resources>

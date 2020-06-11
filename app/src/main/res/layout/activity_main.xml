@@ -8,8 +8,33 @@
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/card_pager"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/view_pager_height"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tabDots"/>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabDots"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="@dimen/tab_dot_size"
+        android:layout_marginStart="@dimen/tab_dot_space"
+        android:layout_marginLeft="@dimen/tab_dot_space"
+        app:tabPaddingStart="@dimen/tab_dot_space"
+        app:tabPaddingEnd="@dimen/tab_dot_space"
+        android:clipToPadding="false"
+        app:tabMaxWidth="@dimen/tab_dot_size"
+        app:layout_constraintTop_toBottomOf="@id/card_pager"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp" />
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/card_overview"
+        app:layout_constraintTop_toBottomOf="@id/tabDots" />
 
     <View
         android:id="@+id/overlay"

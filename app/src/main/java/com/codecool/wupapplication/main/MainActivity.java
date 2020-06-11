@@ -1,6 +1,7 @@
 package com.codecool.wupapplication.main;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -8,12 +9,15 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codecool.wupapplication.R;
 import com.codecool.wupapplication.model.Card;
+import com.codecool.wupapplication.util.CurrencyFormatter;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
 
@@ -23,14 +27,32 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
     private CardContract.Presenter mPresenter;
     private ProgressBar progressBar;
     private View overlay;
+    private ViewPager viewPager;
+    private TextView mAvailableBalance;
+    private TextView mCurrentBalance;
+    private TextView mMinPayment;
+    private TextView mDueDate;
+    private TextView mCurrentBalanceCurrency;
+    private TextView mPaymentCurrency;
+    private TextView mDetailsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.custom_action_bar);
+
         progressBar = findViewById(R.id.progress_circular);
         overlay = findViewById(R.id.overlay);
+        mAvailableBalance = findViewById(R.id.main_available_value);
+        mCurrentBalance = findViewById(R.id.current_balance_value);
+        mMinPayment = findViewById(R.id.min_payment_value);
+        mDueDate = findViewById(R.id.due_date_value);
+        mCurrentBalanceCurrency = findViewById(R.id.current_balance_currency);
+        mPaymentCurrency = findViewById(R.id.min_payment_currency);
+        mDetailsButton = findViewById(R.id.details_button);
 
         mPresenter = new CardPresenter(this);
         mPresenter.requestCards();
@@ -60,10 +82,39 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
     }
 
     @Override
-    public void showCardFragments(List<Card> cards) {
+    public void showCardFragments(final List<Card> cards) {
         CardFragmentAdapter cardFragmentAdapter = new CardFragmentAdapter(getSupportFragmentManager(), cards);
-        ViewPager viewPager = findViewById(R.id.card_pager);
+        viewPager = findViewById(R.id.card_pager);
         viewPager.setAdapter(cardFragmentAdapter);
+        TabLayout tabLayout = findViewById(R.id.tabDots);
+        tabLayout.setupWithViewPager(viewPager, true);
+        fillData(0, cards);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                fillData(position, cards);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
+
+    private void fillData(int position, List<Card> cards) {
+        String currency = cards.get(position).getCurrency();
+        mAvailableBalance.setText(CurrencyFormatter.formatIntToCurrency(cards.get(position).getAvailableBalance()));
+        mCurrentBalance.setText(CurrencyFormatter.formatIntToCurrency(cards.get(position).getCurrentBalance()));
+        mMinPayment.setText(CurrencyFormatter.formatIntToCurrency(cards.get(position).getMinPayment()));
+        mDueDate.setText(cards.get(position).getDueDate());
+        mCurrentBalanceCurrency.setText(currency);
+        mPaymentCurrency.setText(currency);
     }
 
     @Override
@@ -87,5 +138,9 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
     protected void onDestroy() {
         mPresenter.onDetach();
         super.onDestroy();
+    }
+
+    public void setCurrentItem(int item, boolean smoothScroll) {
+        viewPager.setCurrentItem(item, smoothScroll);
     }
 }
