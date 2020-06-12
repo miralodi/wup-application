@@ -17,9 +17,7 @@
             android:layout_height="@dimen/available_label_height"
             android:layout_marginTop="@dimen/available_label_margin_top"
             android:text="@string/main_available_label"
-            android:textColor="@color/status_blue"
-            android:textSize="@dimen/available_label_text_size"
-            app:fontFamily="Roboto-Regular"
+            style="@style/chart_label"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,7 +27,8 @@
             android:layout_height="@dimen/available_value_height"
             android:gravity="end"
             android:textColor="@color/status_blue"
-            android:textSize="@dimen/available_value_text_size"
+            android:textSize="@dimen/chart_value_text_size"
+            style="@style/chart_value_available"
             app:fontFamily="Roboto-Medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -52,13 +51,13 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/available_chart_blue_height"
                 android:background="@drawable/chart_background"
-                android:layout_gravity="center_vertical|right|end" />
+                android:layout_gravity="center_vertical|end" />
 
             <ImageView
                 android:id="@+id/alert_view"
                 android:layout_width="@dimen/alert_icon_size"
                 android:layout_height="@dimen/alert_icon_size"
-                android:layout_gravity="center_vertical|right|end"
+                android:layout_gravity="center_vertical|end"
                 style="@style/alert" />
 
         </FrameLayout>

@@ -67,4 +67,24 @@
         <item name="android:tint">@color/error_red</item>
         <item name="android:src">@drawable/ic_alert</item>
     </style>
+
+    <style name="chart_label">
+        <item name="android:textColor">@color/status_blue</item>
+        <item name="android:textSize">@dimen/chart_label_text_size</item>
+        <item name="fontFamily">sans-serif</item>
+    </style>
+
+    <style name="chart_value">
+        <item name="android:textSize">@dimen/chart_value_text_size</item>
+        <item name="fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="chart_value_current" parent="chart_value">
+        <item name="android:textColor">@color/orange</item>
+    </style>
+
+    <style name="chart_value_available" parent="chart_value">
+        <item name="android:textColor">@color/status_blue</item>
+    </style>
+
 </resources>
