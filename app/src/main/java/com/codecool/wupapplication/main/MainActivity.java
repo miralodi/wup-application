@@ -5,18 +5,21 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codecool.wupapplication.R;
+import com.codecool.wupapplication.detail.DetailActivity;
 import com.codecool.wupapplication.model.Card;
-import com.codecool.wupapplication.util.ChartCalculatorWithAnimation;
-import com.codecool.wupapplication.util.CurrencyFormatter;
+import com.codecool.wupapplication.util.ChartCalculator;
+import com.codecool.wupapplication.util.NumberFormatter;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -25,7 +28,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements CardContract.View {
 
-    private BottomNavigationView navView;
     private CardContract.Presenter mPresenter;
     private ProgressBar progressBar;
     private View overlay;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
     private FrameLayout mChartContainer;
     private View mChartAvailable;
     private TextView mDetailsButton;
+    private ImageView mAlertImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
         setContentView(R.layout.activity_main);
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.custom_action_bar);
+        getSupportActionBar().setCustomView(R.layout.main_action_bar);
 
         progressBar = findViewById(R.id.progress_circular);
         overlay = findViewById(R.id.overlay);
@@ -58,12 +61,13 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
         mPaymentCurrency = findViewById(R.id.min_payment_currency);
         mChartContainer = findViewById(R.id.chart_container);
         mChartAvailable = findViewById(R.id.available_chart_blue);
+        mAlertImage = findViewById(R.id.alert_view);
         mDetailsButton = findViewById(R.id.details_button);
 
         mPresenter = new CardPresenter(this);
         mPresenter.requestCards();
 
-        navView = findViewById(R.id.nav_view);
+        BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -113,20 +117,37 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
         });
     }
 
-    private void fillData(int position, List<Card> cards) {
+    private void fillData(final int position, final List<Card> cards) {
         String currency = cards.get(position).getCurrency();
         int availableBalance = cards.get(position).getAvailableBalance();
         int currentBalance = cards.get(position).getCurrentBalance();
 
-        mAvailableBalance.setText(CurrencyFormatter.formatIntToCurrency(availableBalance));
-        mCurrentBalance.setText(CurrencyFormatter.formatIntToCurrency(currentBalance));
-        mMinPayment.setText(CurrencyFormatter.formatIntToCurrency(cards.get(position).getMinPayment()));
+        mAlertImage.setVisibility(View.GONE);
+        mAvailableBalance.setTextColor(getResources().getColor(R.color.dark_blue));
+        mAvailableBalance.setText(NumberFormatter.formatIntToCurrency(availableBalance));
+        mCurrentBalance.setText(NumberFormatter.formatIntToCurrency(currentBalance));
+        mMinPayment.setText(NumberFormatter.formatIntToCurrency(cards.get(position).getMinPayment()));
         mDueDate.setText(cards.get(position).getDueDate());
         mCurrentBalanceCurrency.setText(currency);
         mPaymentCurrency.setText(currency);
 
         int chartLength = mChartContainer.getWidth();
-        ChartCalculatorWithAnimation.calculateChart(chartLength, availableBalance, currentBalance, mChartAvailable);
+        ChartCalculator.calculateChartWithAnimation(chartLength, availableBalance, currentBalance, mChartAvailable);
+
+        if (availableBalance == 0.00) {
+            mAvailableBalance.setTextColor(getResources().getColor(R.color.error_red));
+            mAlertImage.setVisibility(View.VISIBLE);
+            mChartContainer.requestLayout();
+        }
+
+        mDetailsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+                intent.putExtra("currentCard", cards.get(position));
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

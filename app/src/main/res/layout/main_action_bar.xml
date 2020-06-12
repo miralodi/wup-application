@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/tvTitle"
         style="@style/TextAppearance.MaterialComponents.Headline6"
-        android:text="@string/action_bar_title"
+        android:text="@string/action_bar_main_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"

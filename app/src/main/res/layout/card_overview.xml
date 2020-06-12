@@ -17,9 +17,7 @@
             android:layout_height="@dimen/available_label_height"
             android:layout_marginTop="@dimen/available_label_margin_top"
             android:text="@string/main_available_label"
-            android:textColor="@color/status_blue"
-            android:textSize="@dimen/available_label_text_size"
-            app:fontFamily="Roboto-Regular"
+            style="@style/chart_label"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,7 +27,8 @@
             android:layout_height="@dimen/available_value_height"
             android:gravity="end"
             android:textColor="@color/status_blue"
-            android:textSize="@dimen/available_value_text_size"
+            android:textSize="@dimen/chart_value_text_size"
+            style="@style/chart_value_available"
             app:fontFamily="Roboto-Medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +36,7 @@
         <FrameLayout
             android:id="@+id/chart_container"
             android:layout_width="match_parent"
-            android:layout_height="12dp"
+            android:layout_height="@dimen/chart_container_height"
             app:layout_constraintTop_toBottomOf="@id/main_available_value">
 
             <View
@@ -50,9 +49,16 @@
             <View
                 android:id="@+id/available_chart_blue"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/available_chart_blue_height"
                 android:background="@drawable/chart_background"
-                android:layout_gravity="center_vertical|right|end" />
+                android:layout_gravity="center_vertical|end" />
+
+            <ImageView
+                android:id="@+id/alert_view"
+                android:layout_width="@dimen/alert_icon_size"
+                android:layout_height="@dimen/alert_icon_size"
+                android:layout_gravity="center_vertical|end"
+                style="@style/alert" />
 
         </FrameLayout>
 
@@ -62,14 +68,14 @@
         android:id="@+id/current_balance_container"
         style="@style/main_card_detail_container"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/detail_container_height"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/available_container">
 
         <TextView
             android:id="@+id/current_balance_label"
             style="@style/detail_label"
             android:layout_width="@dimen/detail_label_width"
-            android:layout_height="@dimen/detail_label_height"
+            android:layout_height="wrap_content"
             android:text="@string/label_current_balance"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +85,7 @@
             android:id="@+id/current_balance_currency"
             style="@style/currency"
             android:layout_width="@dimen/detail_currency_width"
-            android:layout_height="@dimen/detail_currency_height"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/current_balance_label"
             app:layout_constraintTop_toTopOf="parent" />
@@ -95,12 +101,10 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
+    <include
+        layout="@layout/separator_layout"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:background="@color/overlay"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@id/current_balance_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -109,14 +113,14 @@
         android:id="@+id/min_payment_container"
         style="@style/main_card_detail_container"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/detail_container_height"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/current_balance_container">
 
         <TextView
             android:id="@+id/min_payment_label"
             style="@style/detail_label"
             android:layout_width="@dimen/detail_label_width"
-            android:layout_height="@dimen/detail_label_height"
+            android:layout_height="wrap_content"
             android:text="@string/label_min_payment"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -126,7 +130,7 @@
             android:id="@+id/min_payment_currency"
             style="@style/currency"
             android:layout_width="@dimen/detail_currency_width"
-            android:layout_height="@dimen/detail_currency_height"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/min_payment_label"
             app:layout_constraintTop_toTopOf="parent" />
@@ -142,12 +146,10 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
+    <include
+        layout="@layout/separator_layout"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:background="@color/overlay"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@id/min_payment_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -156,14 +158,14 @@
         android:id="@+id/due_date_container"
         style="@style/main_card_detail_container"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/detail_container_height"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/min_payment_container">
 
         <TextView
             android:id="@+id/due_date_label"
             style="@style/detail_label"
             android:layout_width="@dimen/detail_label_width"
-            android:layout_height="@dimen/detail_label_height"
+            android:layout_height="wrap_content"
             android:text="@string/label_due_date"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -180,15 +182,13 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
+    <include
+        layout="@layout/separator_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/divider_line_height"
-        android:layout_marginStart="@dimen/container_padding_horizontal"
-        android:layout_marginLeft="@dimen/container_padding_horizontal"
-        android:background="@color/overlay"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@id/due_date_container"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/details_button"
