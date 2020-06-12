@@ -28,7 +28,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements CardContract.View {
 
-    private BottomNavigationView navView;
     private CardContract.Presenter mPresenter;
     private ProgressBar progressBar;
     private View overlay;
@@ -68,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
         mPresenter = new CardPresenter(this);
         mPresenter.requestCards();
 
-        navView = findViewById(R.id.nav_view);
+        BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -116,17 +115,9 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
 
             }
         });
-
-        mDetailsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
-    private void fillData(int position, List<Card> cards) {
+    private void fillData(final int position, final List<Card> cards) {
         String currency = cards.get(position).getCurrency();
         int availableBalance = cards.get(position).getAvailableBalance();
         int currentBalance = cards.get(position).getCurrentBalance();
@@ -148,6 +139,15 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
             mAlertImage.setVisibility(View.VISIBLE);
             mChartContainer.requestLayout();
         }
+
+        mDetailsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+                intent.putExtra("currentCard", cards.get(position));
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
