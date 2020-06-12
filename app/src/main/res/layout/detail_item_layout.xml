@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/label"
+        style="@style/detail_label"
+        android:layout_width="@dimen/detail_label_width"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:layout_marginLeft="@dimen/container_padding_horizontal"
+        android:layout_marginStart="@dimen/container_padding_horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tool:text="Balance carried over from last statement"/>
+
+    <TextView
+        android:id="@+id/currency"
+        style="@style/currency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBaseline_toBaselineOf="@+id/label"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        tool:text="USD" />
+
+    <TextView
+        android:id="@+id/value"
+        style="@style/detail_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/container_padding_horizontal"
+        android:layout_marginEnd="@dimen/container_padding_horizontal"
+        app:layout_constraintBaseline_toBaselineOf="@+id/currency"
+        app:layout_constraintEnd_toEndOf="parent"
+        tool:text="3000.00" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <include
+        layout="@layout/separator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

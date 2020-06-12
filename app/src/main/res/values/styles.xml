@@ -1,10 +1,99 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="DetailTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/status_blue</item>
+    </style>
+
+    <style name="main_card_arrow">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:tint">@color/secondary_blue</item>
+        <item name="android:src">@drawable/ic_arrowleft</item>
+    </style>
+
+    <style name="main_card_detail_container">
+        <item name="android:paddingLeft">@dimen/container_padding_horizontal</item>
+        <item name="android:paddingStart">@dimen/container_padding_horizontal</item>
+        <item name="android:paddingRight">@dimen/container_padding_horizontal</item>
+        <item name="android:paddingEnd">@dimen/container_padding_horizontal</item>
+    </style>
+
+    <style name="detail_label">
+        <item name="android:textColor">@color/status_blue</item>
+        <item name="android:textSize">@dimen/detail_text_size</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <style name="currency">
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:textSize">@dimen/detail_text_size</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:gravity">right|center_vertical</item>
+    </style>
+
+    <style name="detail_value">
+        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:textSize">@dimen/detail_text_size</item>
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:gravity">right|center_vertical</item>
+    </style>
+
+    <style name="button_details">
+        <item name="android:layout_marginTop">31dp</item>
+        <item name="android:textColor">@color/secondary_blue</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="alert">
+        <item name="android:background">@android:color/white</item>
+        <item name="android:tint">@color/error_red</item>
+        <item name="android:src">@drawable/ic_alert</item>
+    </style>
+
+    <style name="chart_label">
+        <item name="android:textColor">@color/status_blue</item>
+        <item name="android:textSize">@dimen/chart_label_text_size</item>
+        <item name="fontFamily">sans-serif</item>
+    </style>
+
+    <style name="chart_value">
+        <item name="android:textSize">@dimen/chart_value_text_size</item>
+        <item name="fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="chart_value_current" parent="chart_value">
+        <item name="android:textColor">@color/orange</item>
+    </style>
+
+    <style name="chart_value_available" parent="chart_value">
+        <item name="android:textColor">@color/status_blue</item>
+    </style>
+
+    <style name="details_header">
+        <item name="android:layout_marginTop">@dimen/header_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/header_margin_bottom</item>
+        <item name="android:layout_marginStart">@dimen/container_padding_horizontal</item>
+        <item name="android:layout_marginLeft">@dimen/container_padding_horizontal</item>
+        <item name="android:layout_marginEnd">@dimen/container_padding_horizontal</item>
+        <item name="android:layout_marginRight">@dimen/container_padding_horizontal</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:textColor">@color/grey</item>
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/header_text_size</item>
     </style>
 
 </resources>
