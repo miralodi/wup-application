@@ -37,7 +37,7 @@
         <FrameLayout
             android:id="@+id/chart_container"
             android:layout_width="match_parent"
-            android:layout_height="12dp"
+            android:layout_height="@dimen/chart_container_height"
             app:layout_constraintTop_toBottomOf="@id/main_available_value">
 
             <View
@@ -50,9 +50,16 @@
             <View
                 android:id="@+id/available_chart_blue"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/available_chart_blue_height"
                 android:background="@drawable/chart_background"
                 android:layout_gravity="center_vertical|right|end" />
+
+            <ImageView
+                android:id="@+id/alert_view"
+                android:layout_width="@dimen/alert_icon_size"
+                android:layout_height="@dimen/alert_icon_size"
+                android:layout_gravity="center_vertical|right|end"
+                style="@style/alert" />
 
         </FrameLayout>
 

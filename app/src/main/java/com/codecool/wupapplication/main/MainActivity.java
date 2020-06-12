@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
     private FrameLayout mChartContainer;
     private View mChartAvailable;
     private TextView mDetailsButton;
+    private ImageView mAlertImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
         mPaymentCurrency = findViewById(R.id.min_payment_currency);
         mChartContainer = findViewById(R.id.chart_container);
         mChartAvailable = findViewById(R.id.available_chart_blue);
+        mAlertImage = findViewById(R.id.alert_view);
         mDetailsButton = findViewById(R.id.details_button);
 
         mPresenter = new CardPresenter(this);
@@ -128,6 +131,8 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
         int availableBalance = cards.get(position).getAvailableBalance();
         int currentBalance = cards.get(position).getCurrentBalance();
 
+        mAlertImage.setVisibility(View.GONE);
+        mAvailableBalance.setTextColor(getResources().getColor(R.color.dark_blue));
         mAvailableBalance.setText(CurrencyFormatter.formatIntToCurrency(availableBalance));
         mCurrentBalance.setText(CurrencyFormatter.formatIntToCurrency(currentBalance));
         mMinPayment.setText(CurrencyFormatter.formatIntToCurrency(cards.get(position).getMinPayment()));
@@ -137,6 +142,12 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
 
         int chartLength = mChartContainer.getWidth();
         ChartCalculatorWithAnimation.calculateChart(chartLength, availableBalance, currentBalance, mChartAvailable);
+
+        if (availableBalance == 0.00) {
+            mAvailableBalance.setTextColor(getResources().getColor(R.color.error_red));
+            mAlertImage.setVisibility(View.VISIBLE);
+            mChartContainer.requestLayout();
+        }
     }
 
     @Override
