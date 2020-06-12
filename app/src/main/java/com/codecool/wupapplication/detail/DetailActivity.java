@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.codecool.wupapplication.R;
 import com.codecool.wupapplication.model.Card;
 import com.codecool.wupapplication.util.ChartCalculator;
-import com.codecool.wupapplication.util.CurrencyFormatter;
+import com.codecool.wupapplication.util.NumberFormatter;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -44,8 +44,8 @@ public class DetailActivity extends AppCompatActivity {
 
         TextView mCurrentBalanceValue = findViewById(R.id.details_chart_value_current);
         TextView mAvailableValue = findViewById(R.id.details_chart_value_available);
-        mCurrentBalanceValue.setText(CurrencyFormatter.formatIntToCurrency(currentBalance));
-        mAvailableValue.setText(CurrencyFormatter.formatIntToCurrency(availableBalance));
+        mCurrentBalanceValue.setText(NumberFormatter.formatIntToCurrency(currentBalance));
+        mAvailableValue.setText(NumberFormatter.formatIntToCurrency(availableBalance));
 
         final FrameLayout mChartContainer = findViewById(R.id.chart_diagram_container);
         final View mChartCurrent = findViewById(R.id.chart_current);
@@ -64,28 +64,28 @@ public class DetailActivity extends AppCompatActivity {
         TextView mReservationCurrency = findViewById(R.id.reservations_currency);
         TextView mReservationValue = findViewById(R.id.reservations_value);
         mReservationCurrency.setText(currency);
-        mReservationValue.setText(CurrencyFormatter.formatIntToCurrency(reservations));
+        mReservationValue.setText(NumberFormatter.formatIntToCurrency(reservations));
 
         DetailItem balance = findViewById(R.id.carried_balance);
         balance.setCurrencyText(currency);
-        balance.setValueText(CurrencyFormatter.formatIntToCurrency(currentCard.getBalanceCarriedOverFromLastStatement()));
+        balance.setValueText(NumberFormatter.formatIntToCurrency(currentCard.getBalanceCarriedOverFromLastStatement()));
 
         DetailItem totalSpendings = findViewById(R.id.total_spendings);
         totalSpendings.setCurrencyText(currency);
-        totalSpendings.setValueText(CurrencyFormatter.formatIntToCurrency(currentCard.getSpendingsSinceLastStatement()));
+        totalSpendings.setValueText(NumberFormatter.formatIntToCurrency(currentCard.getSpendingsSinceLastStatement()));
 
         DetailItem lastRepayment = findViewById(R.id.last_repayment);
         lastRepayment.setValueText(currentCard.getYourLastRepayment());
 
         DetailItem accountLimit = findViewById(R.id.account_limit);
         accountLimit.setCurrencyText(currency);
-        accountLimit.setValueText(CurrencyFormatter.formatIntToCurrency(currentCard.getAccountDetails().getAccountLimit()));
+        accountLimit.setValueText(NumberFormatter.formatIntToCurrency(currentCard.getAccountDetails().getAccountLimit()));
 
         DetailItem accountNumber = findViewById(R.id.account_number);
         accountNumber.setValueText(currentCard.getAccountDetails().getAccountNumber());
 
         DetailItem cardNumber = findViewById(R.id.card_number);
-        cardNumber.setValueText(currentCard.getCardNumber());
+        cardNumber.setValueText(NumberFormatter.formatCreditCardNumber(currentCard.getCardNumber()));
 
         DetailItem cardHolder = findViewById(R.id.card_holder_name);
         cardHolder.setValueText(currentCard.getCardHolderName());

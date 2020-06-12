@@ -19,7 +19,7 @@ import com.codecool.wupapplication.R;
 import com.codecool.wupapplication.detail.DetailActivity;
 import com.codecool.wupapplication.model.Card;
 import com.codecool.wupapplication.util.ChartCalculator;
-import com.codecool.wupapplication.util.CurrencyFormatter;
+import com.codecool.wupapplication.util.NumberFormatter;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -124,9 +124,9 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
 
         mAlertImage.setVisibility(View.GONE);
         mAvailableBalance.setTextColor(getResources().getColor(R.color.dark_blue));
-        mAvailableBalance.setText(CurrencyFormatter.formatIntToCurrency(availableBalance));
-        mCurrentBalance.setText(CurrencyFormatter.formatIntToCurrency(currentBalance));
-        mMinPayment.setText(CurrencyFormatter.formatIntToCurrency(cards.get(position).getMinPayment()));
+        mAvailableBalance.setText(NumberFormatter.formatIntToCurrency(availableBalance));
+        mCurrentBalance.setText(NumberFormatter.formatIntToCurrency(currentBalance));
+        mMinPayment.setText(NumberFormatter.formatIntToCurrency(cards.get(position).getMinPayment()));
         mDueDate.setText(cards.get(position).getDueDate());
         mCurrentBalanceCurrency.setText(currency);
         mPaymentCurrency.setText(currency);
