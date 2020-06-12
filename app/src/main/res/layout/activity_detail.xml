@@ -1,142 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="@dimen/details_layout_padding_top"
-    tools:context=".detail.DetailActivity">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/details_app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/details_chart_container"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="@color/status_blue"
+            app:title="@string/action_bar_details_title" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/details_layout_padding_top"
+        tools:context=".detail.DetailActivity"
+        app:layout_constraintTop_toBottomOf="@id/details_app_bar">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/details_chart_container_margin_bottom"
-            android:paddingStart="@dimen/container_padding_horizontal"
-            android:paddingLeft="@dimen/container_padding_horizontal"
-            android:paddingEnd="@dimen/container_padding_horizontal"
-            android:paddingRight="@dimen/container_padding_horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/details_chart_label_current"
-                style="@style/chart_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/label_current_balance"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/details_chart_label_available"
-                style="@style/chart_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/main_available_label"
-                app:layout_constraintBaseline_toBaselineOf="@+id/details_chart_label_current"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <TextView
-                android:id="@+id/details_chart_value_current"
-                style="@style/chart_value_current"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/available_value_height"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/details_chart_label_current" />
-
-            <TextView
-                android:id="@+id/details_chart_value_available"
-                style="@style/chart_value_available"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/available_value_height"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/details_chart_label_available" />
-
-            <FrameLayout
-                android:id="@+id/chart_diagram_container"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/details_chart_container"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/chart_diagram_height"
-                app:layout_constraintTop_toBottomOf="@id/details_chart_value_available">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/details_chart_container_margin_bottom"
+                android:paddingStart="@dimen/container_padding_horizontal"
+                android:paddingLeft="@dimen/container_padding_horizontal"
+                android:paddingEnd="@dimen/container_padding_horizontal"
+                android:paddingRight="@dimen/container_padding_horizontal">
+
+                <TextView
+                    android:id="@+id/details_chart_label_current"
+                    style="@style/chart_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_current_balance"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/details_chart_label_available"
+                    style="@style/chart_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/main_available_label"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/details_chart_label_current"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/details_chart_value_current"
+                    style="@style/chart_value_current"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/available_value_height"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/details_chart_label_current" />
+
+                <TextView
+                    android:id="@+id/details_chart_value_available"
+                    style="@style/chart_value_available"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/available_value_height"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/details_chart_label_available" />
+
+                <FrameLayout
+                    android:id="@+id/chart_diagram_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/chart_diagram_height"
+                    app:layout_constraintTop_toBottomOf="@id/details_chart_value_available">
+
+                    <View
+                        android:id="@+id/chart_reservations"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/reservations_color" />
+
+                    <View
+                        android:id="@+id/chart_current"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/orange" />
+
+                    <View
+                        android:id="@+id/chart_available"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+                        android:background="@color/primary_blue" />
+
+                </FrameLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="@dimen/container_padding_horizontal"
+                android:paddingRight="@dimen/container_padding_horizontal"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <View
-                    android:id="@+id/chart_reservations"
+                    android:id="@+id/reservations_color"
+                    android:layout_width="@dimen/reservations_color_width"
+                    android:layout_height="@dimen/reservations_color_height"
+                    android:background="@color/reservations_color"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/reservations_label"
+                    style="@style/detail_label"
+                    android:layout_width="@dimen/detail_label_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/reservations_label_margin_left"
+                    android:layout_marginLeft="@dimen/reservations_label_margin_left"
+                    android:gravity="start"
+                    android:text="@string/reservations_label"
+                    app:layout_constraintBottom_toBottomOf="@+id/reservations_color"
+                    app:layout_constraintStart_toEndOf="@+id/reservations_color"
+                    app:layout_constraintTop_toTopOf="@+id/reservations_color" />
+
+                <TextView
+                    android:id="@+id/reservations_currency"
+                    style="@style/currency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/guideline_reservations"
+                    app:layout_constraintTop_toTopOf="@+id/reservations_label" />
+
+                <TextView
+                    android:id="@+id/reservations_value"
+                    style="@style/detail_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/reservations_label" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_reservations"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/reservations_color" />
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.6" />
 
-                <View
-                    android:id="@+id/chart_current"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/orange" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <View
-                    android:id="@+id/chart_available"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="end"
-                    android:background="@color/primary_blue" />
+        </LinearLayout>
+    </ScrollView>
 
-            </FrameLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingEnd="@dimen/container_padding_horizontal"
-            android:paddingRight="@dimen/container_padding_horizontal"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <View
-                android:id="@+id/reservations_color"
-                android:layout_width="@dimen/reservations_color_width"
-                android:layout_height="@dimen/reservations_color_height"
-                android:background="@color/reservations_color"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/reservations_label"
-                style="@style/detail_label"
-                android:layout_width="@dimen/detail_label_width"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/reservations_label_margin_left"
-                android:layout_marginLeft="@dimen/reservations_label_margin_left"
-                android:gravity="start"
-                android:text="@string/reservations_label"
-                app:layout_constraintBottom_toBottomOf="@+id/reservations_color"
-                app:layout_constraintStart_toEndOf="@+id/reservations_color"
-                app:layout_constraintTop_toTopOf="@+id/reservations_color" />
-
-            <TextView
-                android:id="@+id/reservations_currency"
-                style="@style/currency"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@id/guideline_reservations"
-                app:layout_constraintTop_toTopOf="@+id/reservations_label" />
-
-            <TextView
-                android:id="@+id/reservations_value"
-                style="@style/detail_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/reservations_label" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_reservations"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.6" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
-</ScrollView>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="?android:attr/windowBackground"
+        app:itemIconTint="@color/bnv_tab_item_foreground"
+        app:itemTextColor="@color/bnv_tab_item_foreground"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+</androidx.constraintlayout.widget.ConstraintLayout>
