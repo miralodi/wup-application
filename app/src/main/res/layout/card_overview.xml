@@ -68,14 +68,14 @@
         android:id="@+id/current_balance_container"
         style="@style/main_card_detail_container"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/detail_container_height"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/available_container">
 
         <TextView
             android:id="@+id/current_balance_label"
             style="@style/detail_label"
             android:layout_width="@dimen/detail_label_width"
-            android:layout_height="@dimen/detail_label_height"
+            android:layout_height="wrap_content"
             android:text="@string/label_current_balance"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +85,7 @@
             android:id="@+id/current_balance_currency"
             style="@style/currency"
             android:layout_width="@dimen/detail_currency_width"
-            android:layout_height="@dimen/detail_currency_height"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/current_balance_label"
             app:layout_constraintTop_toTopOf="parent" />
@@ -113,14 +113,14 @@
         android:id="@+id/min_payment_container"
         style="@style/main_card_detail_container"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/detail_container_height"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/current_balance_container">
 
         <TextView
             android:id="@+id/min_payment_label"
             style="@style/detail_label"
             android:layout_width="@dimen/detail_label_width"
-            android:layout_height="@dimen/detail_label_height"
+            android:layout_height="wrap_content"
             android:text="@string/label_min_payment"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -130,7 +130,7 @@
             android:id="@+id/min_payment_currency"
             style="@style/currency"
             android:layout_width="@dimen/detail_currency_width"
-            android:layout_height="@dimen/detail_currency_height"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/min_payment_label"
             app:layout_constraintTop_toTopOf="parent" />
@@ -158,14 +158,14 @@
         android:id="@+id/due_date_container"
         style="@style/main_card_detail_container"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/detail_container_height"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/min_payment_container">
 
         <TextView
             android:id="@+id/due_date_label"
             style="@style/detail_label"
             android:layout_width="@dimen/detail_label_width"
-            android:layout_height="@dimen/detail_label_height"
+            android:layout_height="wrap_content"
             android:text="@string/label_due_date"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

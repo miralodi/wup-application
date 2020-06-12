@@ -31,6 +31,8 @@
         <item name="android:textColor">@color/status_blue</item>
         <item name="android:textSize">@dimen/detail_text_size</item>
         <item name="fontFamily">sans-serif</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
     </style>
 
     <style name="currency">
@@ -79,6 +81,19 @@
 
     <style name="chart_value_available" parent="chart_value">
         <item name="android:textColor">@color/status_blue</item>
+    </style>
+
+    <style name="details_header">
+        <item name="android:layout_marginTop">@dimen/header_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/header_margin_bottom</item>
+        <item name="android:layout_marginStart">@dimen/container_padding_horizontal</item>
+        <item name="android:layout_marginLeft">@dimen/container_padding_horizontal</item>
+        <item name="android:layout_marginEnd">@dimen/container_padding_horizontal</item>
+        <item name="android:layout_marginRight">@dimen/container_padding_horizontal</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:textColor">@color/grey</item>
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/header_text_size</item>
     </style>
 
 </resources>

@@ -22,10 +22,11 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:paddingTop="@dimen/details_layout_padding_top"
         tools:context=".detail.DetailActivity"
-        app:layout_constraintTop_toBottomOf="@id/details_app_bar">
+        app:layout_constraintTop_toBottomOf="@id/details_app_bar"
+        app:layout_constraintBottom_toTopOf="@id/nav_view">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -110,7 +111,8 @@
                 android:layout_height="wrap_content"
                 android:paddingEnd="@dimen/container_padding_horizontal"
                 android:paddingRight="@dimen/container_padding_horizontal"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry">
 
                 <View
                     android:id="@+id/reservations_color"
@@ -133,6 +135,13 @@
                     app:layout_constraintStart_toEndOf="@+id/reservations_color"
                     app:layout_constraintTop_toTopOf="@+id/reservations_color" />
 
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_reservations"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.6" />
+
                 <TextView
                     android:id="@+id/reservations_currency"
                     style="@style/currency"
@@ -149,13 +158,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/reservations_label" />
 
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline_reservations"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.6" />
-
                 <include
                     layout="@layout/separator_layout"
                     android:layout_width="match_parent"
@@ -165,7 +167,65 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/details_header"
+                android:text="@string/header_balance_overview" />
 
+            <com.codecool.wupapplication.detail.DetailItem
+                android:id="@+id/carried_balance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="@string/carried_balance_label" />
+
+            <com.codecool.wupapplication.detail.DetailItem
+                android:id="@+id/total_spendings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="@string/total_spendings_label" />
+
+            <com.codecool.wupapplication.detail.DetailItem
+                android:id="@+id/last_repayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="@string/last_repayment_label" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/details_header"
+                android:text="@string/header_account_details" />
+
+            <com.codecool.wupapplication.detail.DetailItem
+                android:id="@+id/account_limit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="@string/account_limit_label" />
+
+            <com.codecool.wupapplication.detail.DetailItem
+                android:id="@+id/account_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="@string/account_number_label" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/details_header"
+                android:text="@string/header_main_card" />
+
+            <com.codecool.wupapplication.detail.DetailItem
+                android:id="@+id/card_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="@string/card_number_label" />
+
+            <com.codecool.wupapplication.detail.DetailItem
+                android:id="@+id/card_holder_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="@string/card_holder_label" />
 
         </LinearLayout>
     </ScrollView>
@@ -184,4 +244,5 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_nav_menu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

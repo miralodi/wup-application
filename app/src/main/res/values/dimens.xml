@@ -47,4 +47,8 @@
     <dimen name="reservations_color_width">8dp</dimen>
     <dimen name="reservations_color_height">72dp</dimen>
     <dimen name="reservations_label_margin_left">8dp</dimen>
+
+    <dimen name="header_margin_top">35dp</dimen>
+    <dimen name="header_margin_bottom">13dp</dimen>
+    <dimen name="header_text_size">12sp</dimen>
 </resources>
