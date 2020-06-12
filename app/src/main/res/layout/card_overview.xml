@@ -101,12 +101,10 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
+    <include
+        layout="@layout/separator_layout"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:background="@color/overlay"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@id/current_balance_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -148,12 +146,10 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
+    <include
+        layout="@layout/separator_layout"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:background="@color/overlay"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@id/min_payment_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -186,15 +182,13 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
+    <include
+        layout="@layout/separator_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/divider_line_height"
-        android:layout_marginStart="@dimen/container_padding_horizontal"
-        android:layout_marginLeft="@dimen/container_padding_horizontal"
-        android:background="@color/overlay"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@id/due_date_container"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/details_button"
