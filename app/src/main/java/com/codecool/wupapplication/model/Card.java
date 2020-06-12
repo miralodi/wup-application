@@ -76,6 +76,7 @@ public class Card implements Parcelable {
         balanceCarriedOverFromLastStatement = in.readInt();
         spendingsSinceLastStatement = in.readInt();
         yourLastRepayment = in.readString();
+        accountDetails = in.readParcelable(AccountDetails.class.getClassLoader());
         cardImage = in.readInt();
     }
 
@@ -222,6 +223,7 @@ public class Card implements Parcelable {
         dest.writeInt(balanceCarriedOverFromLastStatement);
         dest.writeInt(spendingsSinceLastStatement);
         dest.writeString(yourLastRepayment);
+        dest.writeParcelable(accountDetails, flags);
         dest.writeInt(cardImage);
     }
 }
