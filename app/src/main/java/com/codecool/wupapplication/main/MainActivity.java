@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.codecool.wupapplication.R;
 import com.codecool.wupapplication.detail.DetailActivity;
 import com.codecool.wupapplication.model.Card;
-import com.codecool.wupapplication.util.ChartCalculatorWithAnimation;
+import com.codecool.wupapplication.util.ChartCalculator;
 import com.codecool.wupapplication.util.CurrencyFormatter;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
         mPaymentCurrency.setText(currency);
 
         int chartLength = mChartContainer.getWidth();
-        ChartCalculatorWithAnimation.calculateChart(chartLength, availableBalance, currentBalance, mChartAvailable);
+        ChartCalculator.calculateChartWithAnimation(chartLength, availableBalance, currentBalance, mChartAvailable);
 
         if (availableBalance == 0.00) {
             mAvailableBalance.setTextColor(getResources().getColor(R.color.error_red));
