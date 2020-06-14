@@ -8,15 +8,17 @@
     <TextView
         android:id="@+id/label"
         style="@style/detail_label"
-        android:layout_width="@dimen/detail_label_width"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="start"
-        android:layout_marginLeft="@dimen/container_padding_horizontal"
         android:layout_marginStart="@dimen/container_padding_horizontal"
+        android:layout_marginLeft="@dimen/container_padding_horizontal"
+        android:gravity="start"
+        android:textAlignment="gravity"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tool:text="Balance carried over from last statement"/>
+        tool:text="Balance carried over from last statement" />
 
     <TextView
         android:id="@+id/currency"

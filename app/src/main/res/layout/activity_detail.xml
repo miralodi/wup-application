@@ -147,16 +147,18 @@
                     style="@style/currency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/reservations_label"
                     app:layout_constraintStart_toStartOf="@id/guideline_reservations"
-                    app:layout_constraintTop_toTopOf="@+id/reservations_label" />
+                    tools:text="USD" />
 
                 <TextView
                     android:id="@+id/reservations_value"
                     style="@style/detail_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/reservations_currency"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/reservations_label" />
+                    tools:text="300.00" />
 
                 <include
                     layout="@layout/separator_layout"
