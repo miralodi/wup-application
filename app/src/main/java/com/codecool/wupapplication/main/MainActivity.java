@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.codecool.wupapplication.R;
 import com.codecool.wupapplication.detail.DetailActivity;
+import com.codecool.wupapplication.detail.DetailItem;
 import com.codecool.wupapplication.model.Card;
 import com.codecool.wupapplication.util.ChartCalculator;
 import com.codecool.wupapplication.util.NumberFormatter;
@@ -33,11 +34,6 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
     private View overlay;
     private ViewPager viewPager;
     private TextView mAvailableBalance;
-    private TextView mCurrentBalance;
-    private TextView mMinPayment;
-    private TextView mDueDate;
-    private TextView mCurrentBalanceCurrency;
-    private TextView mPaymentCurrency;
     private FrameLayout mChartContainer;
     private View mChartAvailable;
     private TextView mDetailsButton;
@@ -54,11 +50,6 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
         progressBar = findViewById(R.id.progress_circular);
         overlay = findViewById(R.id.overlay);
         mAvailableBalance = findViewById(R.id.main_available_value);
-        mCurrentBalance = findViewById(R.id.current_balance_value);
-        mMinPayment = findViewById(R.id.min_payment_value);
-        mDueDate = findViewById(R.id.due_date_value);
-        mCurrentBalanceCurrency = findViewById(R.id.current_balance_currency);
-        mPaymentCurrency = findViewById(R.id.min_payment_currency);
         mChartContainer = findViewById(R.id.chart_container);
         mChartAvailable = findViewById(R.id.available_chart_blue);
         mAlertImage = findViewById(R.id.alert_view);
@@ -122,14 +113,20 @@ public class MainActivity extends AppCompatActivity implements CardContract.View
         int availableBalance = cards.get(position).getAvailableBalance();
         int currentBalance = cards.get(position).getCurrentBalance();
 
+        DetailItem currentBalanceView = findViewById(R.id.current_balance);
+        currentBalanceView.setCurrencyText(currency);
+        currentBalanceView.setValueText(NumberFormatter.formatIntToCurrency(currentBalance));
+
+        DetailItem minPayment = findViewById(R.id.min_payment);
+        minPayment.setCurrencyText(currency);
+        minPayment.setValueText(NumberFormatter.formatIntToCurrency(cards.get(position).getMinPayment()));
+
+        DetailItem dueDate = findViewById(R.id.due_date);
+        dueDate.setValueText(cards.get(position).getDueDate());
+
         mAlertImage.setVisibility(View.GONE);
         mAvailableBalance.setTextColor(getResources().getColor(R.color.dark_blue));
         mAvailableBalance.setText(NumberFormatter.formatIntToCurrency(availableBalance));
-        mCurrentBalance.setText(NumberFormatter.formatIntToCurrency(currentBalance));
-        mMinPayment.setText(NumberFormatter.formatIntToCurrency(cards.get(position).getMinPayment()));
-        mDueDate.setText(cards.get(position).getDueDate());
-        mCurrentBalanceCurrency.setText(currency);
-        mPaymentCurrency.setText(currency);
 
         int chartLength = mChartContainer.getWidth();
         ChartCalculator.calculateChartWithAnimation(chartLength, availableBalance, currentBalance, mChartAvailable);
