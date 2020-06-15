@@ -8,6 +8,6 @@ import retrofit2.http.GET;
 
 public interface BaseApiService {
 
-    @GET("cards.json")
+    @GET("wupdigital/interview-api/master/api/v1/cards.json")
     Observable<List<ResponseCards>> requestCards();
 }
