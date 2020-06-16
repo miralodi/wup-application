@@ -6,10 +6,9 @@ import com.codecool.wupapplication.model.ResponseCards;
 import com.codecool.wupapplication.network.BaseApiService;
 import com.codecool.wupapplication.network.UtilsApi;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Observer;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -18,7 +17,6 @@ public class CardPresenter implements CardContract.Presenter {
 
     private CardContract.View mView;
     BaseApiService mApiService;
-    List<Card> cardList = new ArrayList<>();
 
     public CardPresenter(CardContract.View mView) {
         this.mView = mView;
@@ -31,30 +29,26 @@ public class CardPresenter implements CardContract.Presenter {
         mApiService.requestCards()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<List<ResponseCards>>() {
+                .subscribe(new SingleObserver<List<ResponseCards>>() {
+
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(List<ResponseCards> responseCards) {
-                        for (ResponseCards resCard : responseCards) {
-                            cardList.add(CardAdapter.convertResponseCardToCard(resCard));
-                        }
+                    public void onSuccess(List<ResponseCards> responseCards) {
+                        List<Card> resultCards = CardAdapter.getCards(responseCards);
+                        mView.showCardFragments(resultCards);
+                        mView.hideProgress();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        mView.hideProgress();
                         System.out.println(e.getMessage());
+                        mView.hideProgress();
                     }
 
-                    @Override
-                    public void onComplete() {
-                        mView.hideProgress();
-                        mView.showCardFragments(cardList);
-                    }
                 });
     }
 

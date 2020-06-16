@@ -2,6 +2,9 @@ package com.codecool.wupapplication.model;
 
 import com.codecool.wupapplication.util.DateFormatter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CardAdapter {
 
     public static Card convertResponseCardToCard(ResponseCards resCard) {
@@ -21,5 +24,15 @@ public class CardAdapter {
                 resCard.getAccountDetails(),
                 resCard.getCardImage()
         );
+    }
+
+    public static List<Card> getCards(List<ResponseCards> responseCards) {
+        List<Card> cardList = new ArrayList<>();
+
+        for (ResponseCards resCard : responseCards) {
+            cardList.add(CardAdapter.convertResponseCardToCard(resCard));
+        }
+
+        return cardList;
     }
 }
