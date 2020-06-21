@@ -15,8 +15,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:titleTextColor="@color/status_blue"
-            app:title="@string/action_bar_details_title" />
+            app:title="@string/action_bar_details_title"
+            app:titleTextColor="@color/status_blue" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -24,212 +24,229 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingTop="@dimen/details_layout_padding_top"
-        tools:context=".detail.DetailActivity"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@id/nav_view"
         app:layout_constraintTop_toBottomOf="@id/details_app_bar"
-        app:layout_constraintBottom_toTopOf="@id/nav_view">
+        tools:context=".detail.DetailActivity">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/details_chart_container"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/details_chart_label_current"
+                style="@style/chart_label"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/details_chart_container_margin_bottom"
                 android:paddingStart="@dimen/container_padding_horizontal"
                 android:paddingLeft="@dimen/container_padding_horizontal"
-                android:paddingEnd="@dimen/container_padding_horizontal"
-                android:paddingRight="@dimen/container_padding_horizontal">
+                android:text="@string/label_current_balance"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry" />
 
-                <TextView
-                    android:id="@+id/details_chart_label_current"
-                    style="@style/chart_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_current_balance"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/details_chart_label_available"
-                    style="@style/chart_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/main_available_label"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/details_chart_label_current"
-                    app:layout_constraintEnd_toEndOf="parent" />
-
-                <TextView
-                    android:id="@+id/details_chart_value_current"
-                    style="@style/chart_value_current"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/available_value_height"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/details_chart_label_current" />
-
-                <TextView
-                    android:id="@+id/details_chart_value_available"
-                    style="@style/chart_value_available"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/available_value_height"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/details_chart_label_available" />
-
-                <FrameLayout
-                    android:id="@+id/chart_diagram_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/chart_diagram_height"
-                    app:layout_constraintTop_toBottomOf="@id/details_chart_value_available">
-
-                    <View
-                        android:id="@+id/chart_reservations"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/reservations_color" />
-
-                    <View
-                        android:id="@+id/chart_current"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/orange" />
-
-                    <View
-                        android:id="@+id/chart_available"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="end"
-                        android:background="@color/primary_blue" />
-
-                </FrameLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/details_chart_label_available"
+                style="@style/chart_label"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingEnd="@dimen/container_padding_horizontal"
                 android:paddingRight="@dimen/container_padding_horizontal"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="RtlSymmetry">
-
-                <View
-                    android:id="@+id/reservations_color"
-                    android:layout_width="@dimen/reservations_color_width"
-                    android:layout_height="@dimen/reservations_color_height"
-                    android:background="@color/reservations_color"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/reservations_label"
-                    style="@style/detail_label"
-                    android:layout_width="@dimen/detail_label_width"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/reservations_label_margin_left"
-                    android:layout_marginLeft="@dimen/reservations_label_margin_left"
-                    android:gravity="start"
-                    android:text="@string/reservations_label"
-                    app:layout_constraintBottom_toBottomOf="@+id/reservations_color"
-                    app:layout_constraintStart_toEndOf="@+id/reservations_color"
-                    app:layout_constraintTop_toTopOf="@+id/reservations_color" />
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline_reservations"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.6" />
-
-                <TextView
-                    android:id="@+id/reservations_currency"
-                    style="@style/currency"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/reservations_label"
-                    app:layout_constraintStart_toStartOf="@id/guideline_reservations"
-                    tools:text="USD" />
-
-                <TextView
-                    android:id="@+id/reservations_value"
-                    style="@style/detail_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/reservations_currency"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    tools:text="300.00" />
-
-                <include
-                    layout="@layout/separator_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toEndOf="@id/reservations_color"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                android:text="@string/main_available_label"
+                app:layout_constraintBaseline_toBaselineOf="@+id/details_chart_label_current"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="RtlSymmetry" />
 
             <TextView
+                android:id="@+id/details_chart_value_current"
+                style="@style/chart_value_current"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/available_value_height"
+                android:paddingStart="@dimen/container_padding_horizontal"
+                android:paddingLeft="@dimen/container_padding_horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details_chart_label_current"
+                tools:ignore="RtlSymmetry"
+                tools:text="4544.00" />
+
+            <TextView
+                android:id="@+id/details_chart_value_available"
+                style="@style/chart_value_available"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/available_value_height"
+                android:paddingEnd="@dimen/container_padding_horizontal"
+                android:paddingRight="@dimen/container_padding_horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details_chart_label_available"
+                tools:ignore="RtlSymmetry"
+                tools:text="5500.00" />
+
+            <FrameLayout
+                android:id="@+id/chart_diagram_container"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/chart_diagram_height"
+                android:layout_marginLeft="@dimen/container_padding_horizontal"
+                android:layout_marginStart="@dimen/container_padding_horizontal"
+                android:layout_marginRight="@dimen/container_padding_horizontal"
+                android:layout_marginEnd="@dimen/container_padding_horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/details_chart_value_current">
+
+                <View
+                    android:id="@+id/chart_reservations"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/reservations_color" />
+
+                <View
+                    android:id="@+id/chart_current"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/orange" />
+
+                <View
+                    android:id="@+id/chart_available"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:background="@color/primary_blue" />
+
+            </FrameLayout>
+
+            <View
+                android:id="@+id/reservations_color"
+                android:layout_width="@dimen/reservations_color_width"
+                android:layout_height="@dimen/reservations_color_height"
+                android:layout_marginTop="@dimen/container_padding_horizontal"
+                android:background="@color/reservations_color"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chart_diagram_container" />
+
+            <TextView
+                android:id="@+id/reservations_label"
+                style="@style/detail_label"
+                android:layout_width="@dimen/detail_label_width"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/reservations_label_margin_left"
+                android:layout_marginLeft="@dimen/reservations_label_margin_left"
+                android:gravity="start"
+                android:text="@string/reservations_label"
+                app:layout_constraintBottom_toBottomOf="@+id/reservations_color"
+                app:layout_constraintStart_toEndOf="@+id/reservations_color"
+                app:layout_constraintTop_toTopOf="@+id/reservations_color" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_reservations"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.6" />
+
+            <TextView
+                android:id="@+id/reservations_currency"
+                style="@style/currency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBaseline_toBaselineOf="@+id/reservations_label"
+                app:layout_constraintStart_toStartOf="@id/guideline_reservations"
+                tools:text="USD" />
+
+            <TextView
+                android:id="@+id/reservations_value"
+                style="@style/detail_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="@dimen/container_padding_horizontal"
+                android:paddingRight="@dimen/container_padding_horizontal"
+                app:layout_constraintBaseline_toBaselineOf="@+id/reservations_currency"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="RtlSymmetry"
+                tools:text="300.00" />
+
+            <include
+                android:id="@+id/reservations_separator"
+                layout="@layout/separator_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/reservations_color"
+                app:layout_constraintStart_toEndOf="@id/reservations_color" />
+
+            <TextView
+                android:id="@+id/balance_header"
                 style="@style/details_header"
-                android:text="@string/header_balance_overview" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/header_balance_overview"
+                app:layout_constraintTop_toBottomOf="@id/reservations_separator" />
 
             <com.codecool.wupapplication.detail.DetailItem
                 android:id="@+id/carried_balance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="@string/carried_balance_label" />
+                app:labelText="@string/carried_balance_label"
+                app:layout_constraintTop_toBottomOf="@id/balance_header" />
 
             <com.codecool.wupapplication.detail.DetailItem
                 android:id="@+id/total_spendings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="@string/total_spendings_label" />
+                app:labelText="@string/total_spendings_label"
+                app:layout_constraintTop_toBottomOf="@id/carried_balance" />
 
             <com.codecool.wupapplication.detail.DetailItem
                 android:id="@+id/last_repayment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="@string/last_repayment_label" />
+                app:labelText="@string/last_repayment_label"
+                app:layout_constraintTop_toBottomOf="@id/total_spendings"
+                app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
+                android:id="@+id/account_header"
+                style="@style/details_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/details_header"
-                android:text="@string/header_account_details" />
+                android:text="@string/header_account_details"
+                app:layout_constraintTop_toBottomOf="@id/last_repayment" />
 
             <com.codecool.wupapplication.detail.DetailItem
                 android:id="@+id/account_limit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="@string/account_limit_label" />
+                app:labelText="@string/account_limit_label"
+                app:layout_constraintTop_toBottomOf="@id/account_header" />
 
             <com.codecool.wupapplication.detail.DetailItem
                 android:id="@+id/account_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="@string/account_number_label" />
+                app:labelText="@string/account_number_label"
+                app:layout_constraintTop_toBottomOf="@id/account_limit" />
 
             <TextView
+                android:id="@+id/main_card_header"
+                style="@style/details_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/details_header"
-                android:text="@string/header_main_card" />
+                android:text="@string/header_main_card"
+                app:layout_constraintTop_toBottomOf="@id/account_number" />
 
             <com.codecool.wupapplication.detail.DetailItem
                 android:id="@+id/card_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="@string/card_number_label" />
+                app:labelText="@string/card_number_label"
+                app:layout_constraintTop_toBottomOf="@id/main_card_header" />
 
             <com.codecool.wupapplication.detail.DetailItem
                 android:id="@+id/card_holder_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="@string/card_holder_label" />
+                app:labelText="@string/card_holder_label"
+                app:layout_constraintTop_toBottomOf="@id/card_number" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
