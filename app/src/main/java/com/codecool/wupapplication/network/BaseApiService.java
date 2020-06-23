@@ -3,11 +3,11 @@ package com.codecool.wupapplication.network;
 import com.codecool.wupapplication.model.ResponseCards;
 
 import java.util.List;
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.http.GET;
 
 public interface BaseApiService {
 
-    @GET("cards.json")
-    Observable<List<ResponseCards>> requestCards();
+    @GET("wupdigital/interview-api/master/api/v1/cards.json")
+    Single<List<ResponseCards>> requestCards();
 }

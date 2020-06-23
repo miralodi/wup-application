@@ -1,6 +1,5 @@
 package com.codecool.wupapplication.util;
 
-import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.view.View;
 
@@ -34,9 +33,7 @@ public class ChartCalculator {
                                         }
         );
 
-        AnimatorSet set = new AnimatorSet();
-        set.play(slideAnimator);
-        set.start();
+        slideAnimator.start();
     }
 
     public static void calculateChartFromThreeValues(int chartLength, int availableValue,

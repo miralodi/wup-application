@@ -4,86 +4,82 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/available_container"
+    <TextView
+        android:id="@+id/main_available_label"
+        style="@style/chart_label"
+        android:layout_width="@dimen/available_label_width"
+        android:layout_height="@dimen/available_label_height"
+        android:layout_marginTop="@dimen/available_label_margin_top"
+        android:text="@string/main_available_label"
+        android:layout_marginStart="@dimen/container_padding_horizontal"
+        android:layout_marginLeft="@dimen/container_padding_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/main_available_value"
+        style="@style/chart_value_available"
+        android:layout_width="@dimen/available_value_width"
+        android:layout_height="@dimen/available_value_height"
+        android:gravity="end"
+        android:textColor="@color/status_blue"
+        android:textSize="@dimen/chart_value_text_size"
+        android:layout_marginEnd="@dimen/container_padding_horizontal"
+        android:layout_marginRight="@dimen/container_padding_horizontal"
+        app:fontFamily="Roboto-Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/chart_container"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/available_container_height"
-        android:paddingHorizontal="@dimen/container_padding_horizontal"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="@dimen/chart_container_height"
+        android:layout_marginHorizontal="@dimen/container_padding_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/main_available_value">
 
-        <TextView
-            android:id="@+id/main_available_label"
-            android:layout_width="@dimen/available_label_width"
-            android:layout_height="@dimen/available_label_height"
-            android:layout_marginTop="@dimen/available_label_margin_top"
-            android:text="@string/main_available_label"
-            style="@style/chart_label"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/main_available_value"
-            android:layout_width="@dimen/available_value_width"
-            android:layout_height="@dimen/available_value_height"
-            android:gravity="end"
-            android:textColor="@color/status_blue"
-            android:textSize="@dimen/chart_value_text_size"
-            style="@style/chart_value_available"
-            app:fontFamily="Roboto-Medium"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <FrameLayout
-            android:id="@+id/chart_container"
+        <View
+            android:id="@+id/available_chart_orange"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/chart_container_height"
-            app:layout_constraintTop_toBottomOf="@id/main_available_value">
+            android:layout_height="@dimen/available_chart_orange_height"
+            android:layout_gravity="center_vertical"
+            android:background="@color/orange" />
 
-            <View
-                android:id="@+id/available_chart_orange"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/available_chart_orange_height"
-                android:background="@color/orange"
-                android:layout_gravity="center_vertical" />
+        <View
+            android:id="@+id/available_chart_blue"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/available_chart_blue_height"
+            android:layout_gravity="center_vertical|end"
+            android:background="@drawable/chart_background" />
 
-            <View
-                android:id="@+id/available_chart_blue"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/available_chart_blue_height"
-                android:background="@drawable/chart_background"
-                android:layout_gravity="center_vertical|end" />
+        <ImageView
+            android:id="@+id/alert_view"
+            style="@style/alert"
+            android:layout_width="@dimen/alert_icon_size"
+            android:layout_height="@dimen/alert_icon_size"
+            android:layout_gravity="center_vertical|end" />
 
-            <ImageView
-                android:id="@+id/alert_view"
-                android:layout_width="@dimen/alert_icon_size"
-                android:layout_height="@dimen/alert_icon_size"
-                android:layout_gravity="center_vertical|end"
-                style="@style/alert" />
-
-        </FrameLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
     <com.codecool.wupapplication.detail.DetailItem
         android:id="@+id/current_balance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:labelText="@string/label_current_balance"
-        app:layout_constraintTop_toBottomOf="@id/available_container"/>
+        app:layout_constraintTop_toBottomOf="@id/chart_container" />
 
     <com.codecool.wupapplication.detail.DetailItem
         android:id="@+id/min_payment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:labelText="@string/label_min_payment"
-        app:layout_constraintTop_toBottomOf="@id/current_balance"/>
+        app:layout_constraintTop_toBottomOf="@id/current_balance" />
 
     <com.codecool.wupapplication.detail.DetailItem
         android:id="@+id/due_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:labelText="@string/label_due_date"
-        app:layout_constraintTop_toBottomOf="@id/min_payment"/>
+        app:layout_constraintTop_toBottomOf="@id/min_payment" />
 
     <TextView
         android:id="@+id/details_button"
